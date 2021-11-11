@@ -124,6 +124,40 @@ class Algebra extends AnyFlatSpec{
       assert(l1 == l2)
     }
   }
+  def complementation1 = {
+    val l1 = l.filter(isOddPredicate() and !isOddPredicate())
+    "Complementation 1" should "predicate composition meets Complementation Law" in {
+      assert(l1 == List.empty[Int])
+    }
+  }
+  def complementation2 = {
+    val l1 = l.filter(isOddPredicate() or !isOddPredicate())
+    "Complementation 2" should "predicate composition meets Complementation Law" in {
+      assert(l1 == l)
+    }
+  }
+  def doubleNegative = {
+    val l1 = l.filter(!(!isOddPredicate()))
+    val l2 = l.filter(isOddPredicate())
+    "Double Negative" should "predicate composition meets Double Negative Law" in {
+      assert(l1 == l2)
+    }
+  }
+  def deMorgan1 = {
+    val l1 = l.filter(!isOddPredicate() and !IntGreaterThan(3))
+    val l2 = l.filter(!(isOddPredicate() or IntGreaterThan(3)))
+    "De Morgan 1" should "predicate composition meets De Morgan Law" in {
+      assert(l1 == l2)
+    }
+  }
+  def deMorgan2 = {
+    val l1 = l.filter(!isOddPredicate() or !IntGreaterThan(3))
+    val l2 = l.filter(!(isOddPredicate() and IntGreaterThan(3)))
+    "De Morgan 2" should "predicate composition meets De Morgan Law" in {
+      assert(l1 == l2)
+    }
+  }
+
   associativityOr
   associativityAnd
   commutativityOr
@@ -137,4 +171,9 @@ class Algebra extends AnyFlatSpec{
   absorption1
   absorption2
   distributivityOfOrOverAnd
+  complementation1
+  complementation2
+  doubleNegative
+  deMorgan1
+  deMorgan2
 }
