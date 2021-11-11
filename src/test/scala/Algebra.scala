@@ -31,28 +31,28 @@ class Algebra extends AnyFlatSpec{
   def associativityOr = {
     val l1 = l.filter((IntLessThan(2) or IntGreaterThan(7)) or isOddPredicate())
     val l2 = l.filter(IntLessThan(2) or (IntGreaterThan(7) or isOddPredicate()))
-    "Associativity Or" should "predicate composition meets associate Law" in {
+    "Associativity Or" should "predicate composition meets Associativity Law" in {
       assert(l1 == l2)
     }
   }
   def associativityAnd= {
     val l1 = l.filter((IntLessThan(2) and IntGreaterThan(7)) and isOddPredicate())
     val l2 = l.filter(IntLessThan(2) and (IntGreaterThan(7) and isOddPredicate()))
-    "Associativity And" should "predicate composition meets associate Law" in {
+    "Associativity And" should "predicate composition meets Associativity Law" in {
       assert(l1 == l2)
     }
   }
   def commutativityOr = {
     val l1 = l.filter(IntLessThan(2) or IntGreaterThan(7))
     val l2 = l.filter(IntGreaterThan(7) or IntLessThan(2))
-    "Commutativity Or" should "predicate composition meets commutativity Law" in {
+    "Commutativity Or" should "predicate composition meets Commutativity Law" in {
       assert(l1 == l2)
     }
   }
   def commutativityAnd =  {
     val l1 = l.filter(IntLessThan(2) and IntGreaterThan(7))
     val l2 = l.filter(IntGreaterThan(7) and IntLessThan(2))
-    "Commutativity And" should "predicate composition meets commutativity Law" in {
+    "Commutativity And" should "predicate composition meets Commutativity Law" in {
       assert(l1 == l2)
     }
   }
@@ -79,27 +79,27 @@ class Algebra extends AnyFlatSpec{
   }
   def annihilatorForAnd = {
     val l1 = l.filter(isOddPredicate() and IntFalsePredicate)
-    "annihilator for And" should "predicate composition meets annihilator Law" in {
+    "Annihilator for And" should "predicate composition meets Annihilator Law" in {
       assert(l1 == List.empty[Int])
     }
   }
   def annihilatorForOr = {
     val l1 = l.filter(isOddPredicate() or IntTruePredicate)
-    "annihilator for Or" should "predicate composition meets annihilator Law" in {
+    "Annihilator for Or" should "predicate composition meets Annihilator Law" in {
       assert(l1 == l)
     }
   }
   def idempotenceOfOr = {
     val l1 = l.filter(isOddPredicate() or isOddPredicate())
     val l2 = l.filter(isOddPredicate())
-    "idempotence of Or" should "predicate composition meets idempotence Law" in {
+    "Idempotence of Or" should "predicate composition meets Idempotence Law" in {
       assert(l1 == l2)
     }
   }
   def idempotenceOfAnd = {
     val l1 = l.filter(isOddPredicate() and isOddPredicate())
     val l2 = l.filter(isOddPredicate())
-    "idempotence of And" should "predicate composition meets idempotence Law" in {
+    "Idempotence of And" should "predicate composition meets Idempotence Law" in {
       assert(l1 == l2)
     }
   }
