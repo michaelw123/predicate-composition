@@ -27,6 +27,7 @@ class Algebra extends AnyFlatSpec{
   object IntFalsePredicate extends FalsePredicate[Int](0)
 
   val l = List(1,2,3,4,5,6,7,8,9,10)
+  val ll = List(List(1,2,3), List(4,5,6), List(7,8,9))
 
   def associativityOr = {
     val l1 = l.filter((IntLessThan(2) or IntGreaterThan(7)) or isOddPredicate())
@@ -157,7 +158,14 @@ class Algebra extends AnyFlatSpec{
       assert(l1 == l2)
     }
   }
-
+  def testMap = {
+    val l1 = l.map(a => if (isOddPredicate()(a)) a+1 else a)
+    l1.foreach(println)
+  }
+  def testFlatmap = {
+    val l1 = l.flatMap(a => if (isOddPredicate()(a)) List.empty[Int] else List(a))
+    l1.foreach(println)
+  }
   associativityOr
   associativityAnd
   commutativityOr
@@ -176,4 +184,6 @@ class Algebra extends AnyFlatSpec{
   doubleNegative
   deMorgan1
   deMorgan2
+  testMap
+  testFlatmap
 }
